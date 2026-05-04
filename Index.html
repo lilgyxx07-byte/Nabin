@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nabin Gyaba - UX & Product Designer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+ 
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #f3f4f6;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+      --success: #10b981;
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary: #1f2937;
+        --text-primary: #f3f4f6;
+        --text-secondary: #d1d5db;
+        --border: #374151;
+      }
+    }
+ 
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: var(--text-primary);
+      background: var(--secondary);
+      line-height: 1.6;
+    }
+ 
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      header {
+        background: #111827;
+      }
+    }
+ 
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+ 
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+ 
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+ 
+    nav a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+ 
+    nav a:hover {
+      color: var(--primary);
+    }
+ 
+    .hero {
+      background: white;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      .hero {
+        background: #111827;
+      }
+    }
+ 
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+ 
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+ 
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+ 
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+ 
+    .cta-button:hover {
+      background: var(--primary-dark);
+    }
+ 
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+ 
+    section {
+      margin-bottom: 4rem;
+    }
+ 
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+ 
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      .about-content {
+        background: #1f2937;
+        border-color: #374151;
+      }
+    }
+ 
+    .about-text h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+ 
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+ 
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+ 
+    .skill-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      .skill-card {
+        background: #1f2937;
+        border-color: #374151;
+      }
+    }
+ 
+    .skill-card h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+ 
+    .skill-card ul {
+      list-style: none;
+      color: var(--text-secondary);
+    }
+ 
+    .skill-card li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+ 
+    .skill-card li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+ 
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+ 
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      .project-card {
+        background: #1f2937;
+        border-color: #374151;
+      }
+    }
+ 
+    .project-card:hover {
+      transform: translateY(-4px);
+    }
+ 
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary) 0%, #06b6d4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+ 
+    .project-content {
+      padding: 1.5rem;
+    }
+ 
+    .project-content h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+ 
+    .project-content p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+ 
+    .tag {
+      background: var(--secondary);
+      color: var(--text-secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+ 
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+ 
+    .blog-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      .blog-card {
+        background: #1f2937;
+        border-color: #374151;
+      }
+    }
+ 
+    .blog-date {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+ 
+    .blog-card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+    }
+ 
+    .blog-card p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+ 
+    .read-more {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+ 
+    .contact-section {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+ 
+    @media (prefers-color-scheme: dark) {
+      .contact-section {
+        background: #1f2937;
+        border-color: #374151;
+      }
+    }
+ 
+    .contact-section h2 {
+      margin-bottom: 1rem;
+    }
+ 
+    .contact-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+ 
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+ 
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+ 
+    footer {
+      background: var(--secondary);
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+ 
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+ 
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+ 
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+ 
+      main {
+        padding: 2rem 1rem;
+      }
+ 
+      section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">YourName</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Creative Designer & UX Strategist</h1>
+      <p>Crafting thoughtful digital experiences that solve real problems and delight users.</p>
+      <a href="#projects" class="cta-button">View My Work</a>
+    </div>
+  </section>
+ 
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>Hello 👋</h3>
+          <p>I'm a product designer passionate about creating intuitive, beautiful interfaces that make people's lives easier. With 5+ years of experience in UX design and product strategy, I've helped startups and established companies reimagine their digital presence.<br><br>
+            I believe great design is invisible—it just works. My process combines user research, creative exploration, and strategic thinking to deliver solutions that matter.</p>
+        </div>
+        <div class="about-text">
+          <h3>What I Do</h3>
+          <p>I specialize in:</p>
+          <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+            <li>UX/UI Design & Strategy</li>
+            <li>User Research & Testing</li>
+            <li>Product Design & Prototyping</li>
+            <li>Design Systems & Branding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+ 
+    <section id="skills">
+      <h2>Skills & Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Design Tools</h4>
+          <ul>
+            <li>Figma</li>
+            <li>Adobe XD</li>
+            <li>Sketch</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Core Competencies</h4>
+          <ul>
+            <li>UX Strategy</li>
+            <li>User Research</li>
+            <li>Usability Testing</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Design Disciplines</h4>
+          <ul>
+            <li>UI Design</li>
+            <li>Interaction Design</li>
+            <li>Visual Design</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>Soft Skills</h4>
+          <ul>
+            <li>Communication</li>
+            <li>Collaboration</li>
+            <li>Problem Solving</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+ 
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">💎</div>
+          <div class="project-content">
+            <h3>E-Commerce Platform Redesign</h3>
+            <p>Redesigned a legacy e-commerce platform, improving conversion rates by 34% through user research and iterative testing.</p>
+            <div class="project-tags">
+              <span class="tag">UX Design</span>
+              <span class="tag">Research</span>
+              <span class="tag">Figma</span>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="project-card">
+          <div class="project-image">🚀</div>
+          <div class="project-content">
+            <h3>SaaS Product Launch</h3>
+            <p>Led design for a B2B SaaS platform from concept to launch, creating a comprehensive design system and user onboarding flow.</p>
+            <div class="project-tags">
+              <span class="tag">Product Design</span>
+              <span class="tag">Design System</span>
+              <span class="tag">Prototyping</span>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="project-card">
+          <div class="project-image">🎨</div>
+          <div class="project-content">
+            <h3>Mobile App Redesign</h3>
+            <p>Transformed a outdated mobile app into a modern, user-centric experience with improved navigation and visual hierarchy.</p>
+            <div class="project-tags">
+              <span class="tag">Mobile Design</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">User Testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <section id="blog">
+      <h2>Latest Articles</h2>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="blog-date">March 15, 2024</div>
+          <h3>The Power of User Research in Design</h3>
+          <p>Exploring why understanding your users is the foundation of every great design decision and how to conduct effective research.</p>
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+ 
+        <div class="blog-card">
+          <div class="blog-date">February 28, 2024</div>
+          <h3>Creating Accessible Digital Experiences</h3>
+          <p>A comprehensive guide to designing inclusive interfaces that work for everyone, including practical accessibility tips.</p>
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+ 
+        <div class="blog-card">
+          <div class="blog-date">February 10, 2024</div>
+          <h3>Design Systems: Building for Scale</h3>
+          <p>How to establish and maintain a design system that grows with your product and scales across teams.</p>
+          <a href="#" class="read-more">Read More →</a>
+        </div>
+      </div>
+    </section>
+ 
+    <section id="contact">
+      <div class="contact-section">
+        <h2>Let's Work Together</h2>
+        <p>Have a project in mind? I'd love to hear about it. Get in touch and let's create something amazing.</p>
+        <div class="contact-links">
+          <a href="mailto:your.email@example.com">Email</a>
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank">Twitter</a>
+        </div>
+        <a href="mailto:your.email@example.com" class="cta-button">Send Me an Email</a>
+      </div>
+    </section>
+  </main>
+ 
+  <footer>
+    <p>&copy; 2024 Nabin gyaba. Designed and built with care.</p>
+  </footer>
+ 
+  <script>
+    // Smooth scrolling for nav links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
